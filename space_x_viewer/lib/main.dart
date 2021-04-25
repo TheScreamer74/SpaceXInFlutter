@@ -1,7 +1,63 @@
 import 'package:flutter/material.dart';
+import 'package:space_x_viewer/API/SpaceXService.dart';
+import 'package:space_x_viewer/Model/Company.dart';
+import 'package:space_x_viewer/Model/Crewmate.dart';
+import 'package:space_x_viewer/Model/Landpad.dart';
+import 'package:space_x_viewer/Model/Launch.dart';
+import 'package:space_x_viewer/Model/Launchpad.dart';
+import 'package:space_x_viewer/Model/Roadster.dart';
+import 'package:space_x_viewer/Model/Rocket.dart';
 
-void main() {
+void main() async {
   runApp(MyApp());
+
+  final SpaceXService spaceXService = SpaceXService();
+
+  Company? company = await spaceXService.getCompany();
+  print(company!.headquarters.city);
+
+  List<Crewmate>? crew = await spaceXService.getCrew();
+  print(crew![2].name);
+
+  List<Landpad>? landpads = await spaceXService.getLandpads();
+  print(landpads![0].fullName);
+
+  Landpad? landpad = await spaceXService.getSpecificLandpad("5e9e3033383ecb075134e7cd");
+  print(landpad!.name);
+
+  List<Launch?>? launches = await spaceXService.getLaunches();
+  print(launches![0]!.name);
+  
+  Launch? launch = await spaceXService.getLaunch("607a37565a906a44023e0866");
+  print(launch!.name);
+
+  List<Launch?>? pastLaunches = await spaceXService.getPastLaunches();
+  print(pastLaunches![1]!.name);
+
+  List<Launch?>? upcomingLaunches = await spaceXService.getUpcomingLaunches();
+  print(upcomingLaunches![0]!.name);
+
+  Launch? latestLaunch = await spaceXService.getLatestLaunch();
+  print(latestLaunch!.name);
+
+  Launch? nextLaunch = await spaceXService.getNextLaunch();
+  print(nextLaunch!.name);
+
+  List<Launchpad>? launchpads = await spaceXService.getLaunchpads();
+  print(launchpads![0].name);
+
+  Launchpad? launchpad = await spaceXService.getSpecificLaunchpad("5e9e4502f509094188566f88");
+  print(launchpad!.name);
+
+  Roadster? roadster = await spaceXService.getRoadster();
+  print(roadster!.name);
+
+  List<Rocket>? rockets = await spaceXService.getRockets();
+  print(rockets![0].name);
+
+  Rocket? rocket = await spaceXService.getSpecificRocket("5e9d0d96eda699382d09d1ee");
+  print(rocket!.name);
+
 }
 
 class MyApp extends StatelessWidget {
@@ -22,13 +78,13 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Flutter Demo Home Page', key: Key("MyHomePage"),),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({required Key key, required this.title}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
