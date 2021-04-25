@@ -7,6 +7,11 @@ import 'package:space_x_viewer/Model/Launch.dart';
 import 'package:space_x_viewer/Model/Launchpad.dart';
 import 'package:space_x_viewer/Model/Roadster.dart';
 import 'package:space_x_viewer/Model/Rocket.dart';
+import 'package:space_x_viewer/spacexinfovue.dart';
+
+
+SpaceXService spaceXService = SpaceXService();
+
 
 void main() async {
   runApp(MyApp());
@@ -111,6 +116,9 @@ class _MyHomePageState extends State<MyHomePage> {
       // so that the display can reflect the updated values. If we changed
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
+      Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => SpaceXInfoVue())
+      );
       _counter++;
     });
   }
