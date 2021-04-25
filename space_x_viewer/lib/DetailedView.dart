@@ -8,6 +8,8 @@ import 'package:space_x_viewer/Model/Launchpad.dart';
 import 'package:space_x_viewer/Model/Roadster.dart';
 import 'package:space_x_viewer/Model/Rocket.dart';
 
+final SpaceXService spaceXService = SpaceXService();
+
 class MyHomePage extends StatefulWidget {
   MyHomePage({required Key key, required this.title}) : super(key: key);
 

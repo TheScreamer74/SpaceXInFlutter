@@ -8,6 +8,7 @@ import 'package:space_x_viewer/Model/Launchpad.dart';
 import 'package:space_x_viewer/Model/Roadster.dart';
 import 'package:space_x_viewer/Model/Rocket.dart';
 import 'package:space_x_viewer/historyView.dart';
+import 'package:space_x_viewer/spacexinfovue.dart';
 
 final SpaceXService spaceXService = SpaceXService();
 
@@ -126,7 +127,7 @@ class _MyHomePageState extends State<MyHomePage> {
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
       Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => HistoryView(title: "SpaceX infos"))
+          MaterialPageRoute(builder: (context) => SpaceXInfoVue())
       );
     });
   }
